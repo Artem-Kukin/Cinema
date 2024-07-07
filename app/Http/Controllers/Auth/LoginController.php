@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
     public function create()
@@ -26,10 +27,11 @@ class LoginController extends Controller
                 'authorization' => 'Неправильный логин или пароль.'
             ]);
         }
-        return redirect()->intended();
+        return redirect()->route('dashboard');
     }
 
-    public function destroy (Request $request) {
+    public function destroy(Request $request)
+    {
         Auth::logout();
 
         $request->session()->invalidate();
